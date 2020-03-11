@@ -49,5 +49,17 @@ steps:
       arguments: '--no-restore --configuration Release'
       projects: '**/*.csproj'
 
-    
+  - task: DotNetCoreCLI@2
+    displayName: "Publish Proyecto - Release"
+    inputs:
+      command: publish
+      arguments: '--no-build --configuration Release -output $(Build.ArtifactStagingDirectory)/Release'
+      projects: '**/*.csproj'
+      publishWebProjects: false
+      zipAfterPublish: true
   
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publicando Artefactos en SpaceWeb'
+    condition: succeeded()
+    inputs:
+      ArtifactName: SpaceWebArtifacts
