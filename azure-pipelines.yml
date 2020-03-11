@@ -56,7 +56,7 @@ steps:
       arguments: '--no-build --configuration Release --output $(Build.ArtifactStagingDirectory)/Release'
       projects: '**/*.csproj'
       publishWebProjects: false
-      zipAfterPublish: true
+      zipAfterPublish: false
   
   - task: PublishBuildArtifacts@1
     displayName: 'Publicando Artefactos en SpaceWeb'
